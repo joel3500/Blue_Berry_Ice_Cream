@@ -4,14 +4,14 @@ services:
     env: python
     plan: free
 
-    # Ton code Flask est ici (selon ton screenshot)
-    rootDir: backend/Blue_Berry_Ice_Cream
+    # Exécute depuis la RACINE du repo pour que les chemins soient prévisibles
+    rootDir: .
 
-    # Ton requirements.txt est DANS ce dossier (d'après l'arborescence affichée)
-    buildCommand: pip install -r requirements.txt
+    # Chemin EXPLICITE vers ton requirements.txt
+    buildCommand: python -m pip install --upgrade pip && pip install -r backend/Blue_Berry_Ice_Cream/requirements.txt
 
-    # L'objet Flask dans products.py s'appelle "products"
-    startCommand: gunicorn -w 2 -b 0.0.0.0:${PORT} products:products
+    # Module fully-qualified depuis la racine
+    startCommand: gunicorn -w 2 -b 0.0.0.0:${PORT} backend.Blue_Berry_Ice_Cream.products:products
 
     autoDeploy: true
     envVars:
@@ -22,10 +22,6 @@ services:
       - key: DB_PATH
         value: /opt/render/project/src/data/blue_blerry_ice_cream.db
 
-    # Disque persistant pour ta base SQLite (écritures conservées entre déploiements)
     disks:
       - name: bb-ice-cream-data
         mountPath: /opt/render/project/src/data
-
-    # (facultatif) Si Je veux que Render surveille la route racine:
-    # healthCheckPath: "/"
