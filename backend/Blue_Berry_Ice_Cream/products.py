@@ -9,7 +9,7 @@ from datetime import date
 from decimal import Decimal
 import os
 from peewee import Model, IntegerField, CharField, BooleanField, DecimalField, AutoField, ForeignKeyField, Check, SqliteDatabase
-from sqlalchemy import null
+#from sqlalchemy import null
 import pytest
 import json
 
