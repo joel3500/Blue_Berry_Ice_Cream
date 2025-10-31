@@ -8,7 +8,7 @@ services:
     rootDir: backend/Blue_Berry_Ice_Cream
 
     # Ton requirements.txt est DANS ce dossier (d'après l'arborescence affichée)
-    buildCommand: pip install -r backend/requirements.txt
+    buildCommand: pip install -r ../requirements.txt
 
     # L'objet Flask dans products.py s'appelle "products"
     startCommand: gunicorn -w 2 -b 0.0.0.0:${PORT} products:products
@@ -27,5 +27,5 @@ services:
       - name: bb-ice-cream-data
         mountPath: /opt/render/project/src/data
 
-    # (facultatif) Si tu veux que Render surveille la route racine:
+    # (facultatif) Si Je veux que Render surveille la route racine:
     # healthCheckPath: "/"
