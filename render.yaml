@@ -4,14 +4,14 @@ services:
     env: python
     plan: free
 
-    # Exécute depuis la RACINE du repo pour que les chemins soient prévisibles
-    rootDir: .
+    # On se place directement dans le dossier qui contient products.py + templates + static
+    rootDir: backend/Blue_Berry_Ice_Cream
 
-    # Chemin EXPLICITE vers ton requirements.txt
-    buildCommand: python -m pip install --upgrade pip && pip install -r backend/Blue_Berry_Ice_Cream/requirements.txt
+    # Ton requirements.txt est DANS ce dossier (d'après ton GitHub)
+    buildCommand: pip install -r requirements.txt
 
-    # Module fully-qualified depuis la racine
-    startCommand: gunicorn -w 2 -b 0.0.0.0:${PORT} backend.Blue_Berry_Ice_Cream.products:products
+    # L'objet Flask dans products.py s'appelle "products"
+    startCommand: gunicorn -w 2 -b 0.0.0.0:${PORT} products:products
 
     autoDeploy: true
     envVars:
@@ -25,3 +25,4 @@ services:
     disks:
       - name: bb-ice-cream-data
         mountPath: /opt/render/project/src/data
+
