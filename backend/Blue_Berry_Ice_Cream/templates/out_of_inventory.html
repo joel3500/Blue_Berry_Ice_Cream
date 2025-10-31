@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+	<!-- Entete de la page -->
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Blue Berry Ice Cream</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Sofia|Trirong|Audiowide">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&effect=fire|neon|outline|emboss|shadow-multiple"> 
+   
+    </head>
+
+    <!-- Corps de la page -->
+	<body>
+		<h2> Blue Berry Ice Cream </h2>
+		<header>
+			<p class="equipe_index_1"> Travail d'équipe fait par : <br><br> 
+										Claude Andreas Nguemtchom  <br>
+										Camara Ciré                <br> 
+										Joel Sandé                 <br>
+										Ulrich Lacmago Mbonwo      <br><br>
+										
+										Pour  :                    <br>                    
+										Prof. Jimmy Girald-Nault 
+            </p>
+        </header><br><br>
+
+		<!--================  Reponse HTTP  ==================================================--->
+
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			{% if erreur %}
+				<div class="audit_ingrediens">
+					{{ erreur }}<br>
+					FIN DES OPÉRATIONS 
+				</div><a href="{{ url_for('index_1') }}">Retourner à la Page d'accueil</a>
+			{% endif %} 
+		</div><br><br>
+
+        <!--================  Audit des produits  ============================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			
+		    {% if json_data %}	
+				<div class="audit_ingrediens">
+					{{ json_data }}    
+				</div><br>
+			{% else %}
+				<div>
+					Aucun produits disponibles pour le moment.<br>
+				</div><br>	
+			{% endif %}
+
+		</div><br><br><br>
+
+		<!--================  FIN DE L'Audit des produits  ===============================================--->
+		
+		<!--================  Audit des produits ( Format Normal ) =======================================--->
+
+		<!--================  FIN DE L'Audit des produits ( Format Normal ) ==============================--->
+        	
+    </body>
+
+	<!-- Le pied de page -->
+	<footer>
+        Travail d'équipe fait par : Andreas, Camara et Joel et Ulrich  | 8INF349 H2025 : Développement Web Avancé | UQAC | Hiver 2025 [ <a href="{{ url_for('apercus_video') }}">aperçus vidéo de la conception</a>­ ]
+	</footer>
+</html>

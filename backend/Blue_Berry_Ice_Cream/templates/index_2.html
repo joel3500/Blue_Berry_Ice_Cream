@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+      <title>Blue Berry Ice Cream</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Sofia|Trirong|Audiowide">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&effect=fire|neon|outline|emboss|shadow-multiple"> 
+      
+  <style>
+
+   </style>
+
+</head>
+
+<body>
+  <h2>Blue Berry Ice Cream</h2>
+  <header>
+      <!-- Image principale 
+          <img src="/static/img/blue_berry_ice_cream.jpg" alt="Blue Berry Ice Cream" class="main-image">
+      -->
+      <p class="equipe_index_1"> Travail d'équipe fait par :                         <br> 
+          Claude Andreas Nguemtchom, Camara Ciré, Joel Sandé, Ulrich Lacmago Mbonwo  <br><br>
+          Pour  :                                                                    <br> 
+          Prof. Jimmy Girald-Nault & son assistant 
+      </p>
+  </header>
+  
+  <!--================  Reponse HTTP  ==================================================--->
+
+  <div type="text" class="reponse_assistant" name="reponse_assistant">
+      {% if status_code %} <br>
+      <div class="audit_ingrediens">
+          {{ status_code }}<br>
+      </div>
+      {% endif %}<br>
+  </div><br><br>
+
+<!--================  Audit des produits ( Format JSON )  ==========================
+		
+    <div type="text" class="reponse_assistant" name="reponse_assistant">
+        <h2> Données extraites de l'API </h2>
+        <h4> ( Format JSON ) </h4>
+        <h4> ( Allez plus bas pour voir les voir en format normal ) </h4>
+        
+        {% if json_data %} <br>	
+          <div class="audit_ingrediens">
+            {{ json_data }}    
+          </div><br>
+        {% else %}
+          <div>
+              Aucun produits disponibles pour le moment.<br>
+          </div><br>	
+        {% endif %}
+    </div><br><br><br>
+  ==================--->
+<!--============  Autres images en dessous, plus petites, avec les nom superposés  =======================-->
+<h4> ( Format normal ) </h4>
+  <!-- Grille de produits (4 images par ligne avec description) -->
+  <div class="product-grid_index_2">
+      {% for product in json_data['products'] %} 
+        <div class="product-item">
+            <img src="/static/img/{{ product['image'] }}" alt="{{ product['name'] }}">
+            <div class="product-details">
+                <div><strong>id</strong>: {{ product['id'] }}</div>
+                <div><strong>name</strong>: {{ product['name'] }}</div>
+                <div><strong>type</strong>: {{ product['type'] }}</div>
+                <div><strong>description</strong>: {{ product['description'] }}</div>
+                <div><strong>height</strong>: {{ product['height'] }}</div>
+                <div><strong>weight</strong>: {{ product['weight'] }}</div>
+                <div><strong>price</strong>: {{ product['price'] }}</div>
+                <div><strong>in_stock</strong>: {{ product['in_stock'] }}</div>
+            </div>
+        </div>
+      {% endfor %}
+  </div>
+  
+  <!--================  3 Boutons centraux  ==========================--->
+
+<div type="text" class="reponse_assistant" name="reponse_assistant">
+  <div class="les_bouton_index">
+      <form action="{{ url_for('index_1') }}" method="POST" style="display: inline;">
+        <input type="hidden" name="json_data" value="{{ json_data }}">
+        <button type="submit">petites sans description</button>
+      </form>
+      
+      <form action="{{ url_for('index_2') }}" method="POST" style="display: inline;">
+        <input type="hidden" name="json_data" value="{{ json_data }}">
+        <button type="submit">grandes avec description</button>
+      </form>
+      
+      <form action="{{ url_for('index_3') }}" method="POST" style="display: inline;">
+        <input type="hidden" name="json_data" value="{{ json_data }}">
+        <button type="submit">petites avec description</button>
+      </form>
+  </div>
+</div><br><br>  
+
+<!--============  FIN des 3 Boutons centraux  =========================================-->
+
+  <!-- Formulaire centré occupant 20% de la page -->
+<form class="form_soumettre_produit" action="{{ url_for('order') }}" method="POST">
+    <label for="id">Id du produit :</label>
+    <input class="input_produit_quantite" type="number" id="id" name="id" required min="1" step="1">
+
+    <label for="quantity">Quantité :</label>
+    <input class="input_produit_quantite" type="number" id="quantity" name="quantity" required min="1" step="1">
+
+    <button type="submit">Passer la Commande :</button><br><br>
+</form>
+  
+  <!-- Le pied de page -->
+  <footer>
+    Travail d'équipe fait par : Andreas, Camara et Joel et Ulrich  | 8INF349 H2025 : Développement Web Avancé | UQAC | Hiver 2025 [ <a href="{{ url_for('apercus_video') }}">aperçus vidéo de la conception</a>­ ]
+</footer>
+
+</body>
+
+</html>

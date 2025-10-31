@@ -1,0 +1,18 @@
+/                                  # racine du repo GitHub
+├─ render.yaml                     # blueprint Render (monorepo)
+├─ .gitignore
+├─ README.md                       # (optionnel mais conseillé)
+├─ .env.example                    # (optionnel)
+├─ index.html                      # <-- GitHub Pages (redirection vers Render) — option “root”
+│
+└─ backend/
+   ├─ requirements.txt
+   └─ Blue_Berry_Ice_Cream/
+      ├─ products.py               # objet Flask = `products`
+      ├─ templates/
+      │  └─ index.html             # ta page serveur (Flask) si tu en sers une
+      └─ static/
+         ├─ css/
+         ├─ js/
+         └─ img/
+

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Blue Berry Ice Cream — Redirection</title>
+    <!-- Remplace l’URL ci-dessous par l’URL EXACTE de ton service Render -->
+    <meta http-equiv="refresh" content="0; url=https://YOUR-RENDER-SERVICE.onrender.com/" />
+    
+    <style>
+      html, body { height: 100%; }
+      body { margin:0; display:flex; align-items:center; justify-content:center; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: 2rem; background:#fafafa; }
+      .card { background:#fff; border:1px solid #e5e5e5; border-radius:16px; padding:24px; max-width:680px; box-shadow: 0 4px 30px rgba(0,0,0,.04); }
+      h1 { margin:0 0 8px; font-size: 24px; }
+      p { margin:0 0 12px; color:#444; }
+      a { color:#1f6feb; text-decoration: none; }
+      code { background:#f1f1f1; padding:2px 6px; border-radius:6px; }
+    </style>
+
+    <script>
+      // Fallback JS au cas où la meta refresh est bloquée
+      (function() {
+        var target = "https://YOUR-RENDER-SERVICE.onrender.com/"; // <= remplace
+        setTimeout(function() {
+          if (location && location.replace) location.replace(target);
+          else location.href = target;
+        }, 500);
+      })();
+    </script>
+
+  </head>
+  <body>
+    <div class="card">
+      <h1>🍦 Blue Berry Ice Cream</h1>
+      <p>Redirection en cours vers l’application hébergée sur Render…</p>
+      <p>Si rien ne se passe, <a href="https://YOUR-RENDER-SERVICE.onrender.com/">clique ici</a>.</p>
+      <p class="hint">Astuce : ouvre ce fichier et remplace <code>https://YOUR-RENDER-SERVICE.onrender.com/</code> par l’URL exacte de ton service Render.</p>
+    </div>
+  </body>
+</html>

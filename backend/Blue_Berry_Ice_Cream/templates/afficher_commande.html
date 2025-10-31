@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html>
+	<!-- Entete de la page -->
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title> Travail d'équipe fait par : Andréas, Camara, Ulrich et Joel </title>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Sofia|Trirong|Audiowide">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&effect=fire|neon|outline|emboss|shadow-multiple"> 
+
+    </head>
+
+    <!-- Corps de la page -->
+	<body>
+		<h2> Blue Berry Ice Cream </h2>
+		<header>
+			<p class="equipe_index_1"> Travail d'équipe fait par :                         <br> 
+				Claude Andreas Nguemtchom, Camara Ciré, Joel Sandé, Ulrich Lacmago Mbonwo  <br><br>
+				pour  :                                                                    <br> 
+				Prof. Jimmy Girald-Nault & son assistant 
+			</p>
+        </header>
+
+		<!--================  Reponse HTTP  ==================================================--->
+
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			{% if status_code %} <br>
+			<div class="audit_ingrediens">
+				{{ status_code }}<br>
+			</div>
+			{% endif %}<br>
+		</div><br><br>
+
+		<!--================  Audit des produits  ============================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			
+			<h2> Produit sélectionné </h2>
+			
+			<!--============================================================-->
+			
+			{% if commande %} <br>
+				<div class="audit_ingrediens">
+					Produit id           : {{ commande['produit']['product_id'] }} <br>
+					Produit Qté          : {{ commande['produit']['quantity'] }} <br>
+				</div>
+			{% else %}
+				<div>
+					Aucune information de prix disponible du produit sélectionné.<br>
+				</div>	
+			{% endif %}
+		
+            {% if product %} <br>	
+				<div class="audit_ingrediens">
+					Nom du produit       : {{ product['name'] }}<br>
+					Type de produit      : {{ product['type'] }}<br>
+					Description          : {{ product['description'] }}<br>
+					Image de référence   : {{ product['image'] }}<br>
+					Taille               : {{ product['height'] }}<br>
+					Poids                : {{ product['weight'] }} g <br>
+					Prix unitaire        : {{ product['price'] }} $ <br>
+					Y en a-t-il en stock : {{ product['in_stock'] }}<br>
+				</div>
+			{% else %}
+				<div>
+					Aucune information disponible pour le moment.<br>
+				</div>	
+			{% endif %}
+			
+		<!--============================================================-->
+			
+			{% if commande %} <br>
+				<div class="audit_ingrediens">
+					Prix total           : {{ commande['total_price'] }} $ <br>
+					Coût de la livraison : {{ commande['shipping_price'] }} $ <br>
+				</div>
+			{% else %}
+				<div>
+					Aucune information de prix disponible pour cette commande.<br>
+				</div>	
+			{% endif %}
+			
+		</div><br><br>
+
+		<!--================  FIN DE L'Audit des produits ( Format Normal ) ===========================--->
+
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+
+			<form action="{{ url_for('update_shipping', order_id=commande['id']) }}" method="POST">
+				<!-- Indique à votre logique serveur que cette requête doit être traitée comme un PUT -->
+				<input type="hidden" name="_method" value="PUT">
+				
+				<label for="id">Commande no :</label>
+				<input class="readonly" type="number" id="commande_id" name="commande_id" value="{{ commande['id'] }}" readonly ><br><br>
+				
+				<label for="id">No produit :</label>
+				<input class="readonly" type="number" id="produit_id" name="produit_id" value="{{ commande['produit']['product_id'] }}" readonly ><br><br>
+				
+				<label for="id">Qté Produit :</label>
+				<input class="readonly" type="number" id="produit_quantity" name="produit_quantity" value="{{ commande['produit']['quantity'] }}" readonly ><br><br>
+
+				<h2>Ajouter l'adresse d'expédition</h2>
+				
+				<label for="email">Entrez votre email :</label>
+				<input class="input_informations" type="text" id="email" name="email" required><br><br>
+				
+				<label for="country">Pays :</label>
+				<input class="input_informations" type="text" id="country" name="country" required><br><br>
+				
+				<label for="adresse">Adresse :</label>
+				<input class="input_informations" type="text" id="adresse" name="adresse" required><br><br>
+				
+				<label for="postale_code">Postal Code :</label>
+				<input class="input_informations" type="text" id="postale_code" name="postale_code" required><br><br>
+				
+				<label for="city">City :</label>
+				<input class="input_informations" type="text" id="city" name="city" required><br><br>
+				
+				<label for="province">Province :</label>
+				<select id="province" name="province" required>
+					<option value="QC">Quebec (QC)</option>
+					<option value="ON">Ontario (ON)</option>
+					<option value="AB">Alberta (AB)</option>
+					<option value="BC">Colombie-Britannique (BC)</option>
+					<option value="NS">Nouvelle-Écosse (NS)</option>
+				</select><br><br>
+				
+				<button type="submit">Mettre à jour les infos de livraison</button>
+				</form>
+				  
+		</div><br><br>
+
+		<!--================  FIN DE L'Audit des produits  =====================================================--->
+        
+		<!--================  Audit des produits  ==============================================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> Liste de nos produits </h2>
+			<h4> ( Format JSON ) </h4>
+			<h4> (Allez plus bas pour voir la voir en format normal)</h4>
+	
+            {% if json_data %}	
+				<div class="audit_ingrediens">
+					{{ json_data }}    
+				</div><br>
+			{% else %}
+				<div>
+					Aucun produits disponibles pour le moment.<br>
+				</div><br>	
+			{% endif %}
+		</div><br><br>
+
+		<!--================  FIN DE L'Audit des produits  ===========================================--->
+		
+		<!--================  Audit des produits ( Format Normal ) ===================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> Liste de nos produits </h2>
+			<h4> ( Format Normal ) </h4>
+	
+            <!--============  Autres images en dessous, plus petites, avec nom superposé  =======================-->
+			<div class="other-images">
+				{% for i in range(50) %}
+				<div class="image-container">
+					<img src="/static/img/{{ i }}.jpg" alt="Image {{ i }}">
+					<div class="image-text">{{ i }}.jpg</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div><br><br><br>
+
+		<!--================  FIN DE L'Audit des produits ( Format Normal ) ===========================--->
+        
+    </body>
+
+	<!-- Le pied de page -->
+	<footer>
+        Travail d'équipe fait par : Andreas, Camara et Joel et Ulrich  | 8INF349 H2025 : Développement Web Avancé | UQAC | Hiver 2025 [ <a href="{{ url_for('apercus_video') }}">aperçus vidéo de la conception</a>­ ]
+	</footer>
+</html>

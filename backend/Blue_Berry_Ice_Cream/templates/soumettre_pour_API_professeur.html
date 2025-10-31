@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+	<!-- Entete de la page -->
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Blue Berry Ice Cream</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Sofia|Trirong|Audiowide">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&effect=fire|neon|outline|emboss|shadow-multiple">
+    </head>
+
+    <!-- Corps de la page -->
+	<body>
+		<h2> Blue Berry Ice Cream </h2>
+		<header>
+			<p class="equipe_index_1"> Travail d'équipe fait par : <br><br> 
+                                        Claude Andreas Nguemtchom  <br>
+                                        Camara Ciré                <br> 
+                                        Joel Sandé                 <br>
+                                        Ulrich Lacmago Mbonwo      <br><br>
+
+                                        pour  :                    <br>
+                                        Prof. Jimmy Girald-Nault & son Assistant 
+            </p>
+        </header><br><br>
+
+		<!--================  Audit du produit  ============================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> Dernière vue avant expédition vers l'API en Ligne </h2>
+		    
+			{% if product %}<br>	
+				<div class="audit_ingrediens">
+					Nom du produit : {{ product['name'] }}                 <br>
+					Type du produit : {{ product['type'] }}                <br>
+					description du produit : {{ product['description'] }}  <br>
+					nom de l'image : {{ product['image'] }}                <br>
+					Taille du produit : {{ product['height'] }}            <br>
+					Poids du produit : {{ product['weight'] }} g           <br>
+					Prix du produit : {{ product['price'] }} $             <br>
+					Disponibilité : {{ product['in_stock'] }}              <br>
+				</div>
+			{% else %}
+				<div>
+					Aucune information disponible pour le moment.<br>
+				</div><br>	
+			{% endif %}
+			
+		<!--============================================================-->
+			
+			{% if commande %} <br>
+				<div class="audit_ingrediens">
+                    No de commande       : {{ commande['id'] }}  <br><br>
+
+                    <h2> Le produit </h2>
+                    No du produit   : {{ commande['produit']['product_id'] }} <br>
+                    Qté du produit   : {{ commande['produit']['quantity'] }}  <br>
+
+                    <h2> les Coordonnées </h2>
+                    Email du demandeur   : {{ commande['email'] }}                          <br> 
+                    Pays   : {{ commande['shipping_information']['country'] }}              <br>
+                    Adresse   : {{ commande['shipping_information']['address'] }}           <br>
+                    Code postal   : {{ commande['shipping_information']['postal_code'] }}   <br>
+                    Ville   : {{ commande['shipping_information']['city'] }}                <br>
+                    Province   : {{ commande['shipping_information']['province'] }}         <br><br>
+
+                    <h2> Les prix </h2>
+					Prix Total            : {{ commande['total_price'] }} $                 <br>
+                    Prix Total avec Taxes : {{ commande['total_price_tax'] }} $             <br>
+					Coût de l'expédition  : {{ commande['shipping_price'] }} $              <br><br>
+
+                    <h2> Carte de crédit </h2>
+                    Nom sur la carte de crédit : {{ commande['credit_card']['name'] }}       <br>
+                    Numéro sur la carte de crédit : {{ commande['credit_card']['number'] }}  <br>
+                    Année d'expiration : {{ commande['credit_card']['expiration_year'] }}    <br>
+                    Mois d'expiration : {{ commande['credit_card']['expiration_month'] }}    <br><br>
+
+                    Status paiement : {{ commande['paid'] }} <br>
+
+				</div>
+			{% else %}
+				<div>
+					Aucune information de prix disponible pour cette commande. <br>
+				</div>	
+			{% endif %}
+
+		</div><br><br>
+
+		<!--================  Reception de la Facture ===========================--->
+        
+        <div type="text" class="reponse_assistant" name="reponse_assistant">
+			
+            <h2> Envoyer à l'API du Prof </h2>
+           
+            <button title="C'est un POST vers l'URL [ https://dimensweb.uqac.ca/~jgnault/shops/pay/ ]"><a href="{{ url_for('facturation', order_id=commande['id']) }}">Envoyer à l'API du Prof</a></button>
+            
+        </div><br><br><br> 
+
+    </body>
+
+	<!-- Le pied de page -->
+	<footer>
+        Travail d'équipe fait par : Andreas, Camara et Joel et Ulrich  | 8INF349 H2025 : Développement Web Avancé | UQAC | Hiver 2025 [ <a href="{{ url_for('apercus_video') }}">aperçus vidéo de la conception</a>­ ]
+	</footer>
+</html>

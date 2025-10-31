@@ -1,0 +1,31 @@
+# Site permettant de vérifier si un objet JSON est valide
+# https://jsonformatter.org/
+
+# Postman
+# https://www.google.com/search?q=Postman+tutorial+with+flask+locally&rlz=1C1ONGR_frCA1020CA1020&sca_esv=b53375f097545c4a&cs=1&biw=1488&bih=837&ei=5ZSyZ4C4ELWyptQP28qUgQI&ved=0ahUKEwjAvt2Dy8mLAxU1mYkEHVslJSAQ4dUDCBA&uact=5&oq=Postman+tutorial+with+flask+locally&gs_lp=Egxnd3Mtd2l6LXNlcnAiI1Bvc3RtYW4gdHV0b3JpYWwgd2l0aCBmbGFzayBsb2NhbGx5MggQABiABBiiBDIFEAAY7wUyBRAAGO8FSMlTUJMQWPlQcAF4AZABAJgBe6ABqg2qAQQxNC41uAEDyAEA-AEBmAIUoALMDcICChAAGLADGNYEGEfCAg0QABiABBiwAxhDGIoFwgIWEC4YgAQYsAMYQxjUAhjIAxiKBdgBAcICGRAuGIAEGLADGNEDGEMYxwEYyAMYigXYAQHCAgoQABiABBhDGIoFwgIFEAAYgATCAgYQABgWGB7CAgsQABiABBiGAxiKBcICBRAhGKABwgIHECEYoAEYCsICBRAhGJ8FmAMAiAYBkAYLugYECAEYCJIHBDE0LjagB71T&sclient=gws-wiz-serp#fpstate=ive&vld=cid:7b566b08,vid:HRBjWez0KCA,st:0
+
+# Peewee, l'ORM qui permet d'automatiser la gestion de SQLite Database. (Référence donnée par le prof)
+
+# 1) https://docs.peewee-orm.com/en/latest/peewee/quickstart.html#model-definition
+# 2) ( Exemple applicatif avec un clone de twitter )
+# https://docs.peewee-orm.com/en/latest/peewee/example.html#example-app  
+# 3) https://docs.peewee-orm.com/en/latest/peewee/models.html#field-types-table
+
+# Peewee : Video Très Explicite ( bien que le présentateur n'a pas l'art oratoire ) 
+# https://www.google.com/search?q=orm+peewee&sca_esv=b8ad25cd9efd3a98&rlz=1C1ONGR_frCA1020CA1020&udm=7&biw=1399&bih=837&ei=sKuyZ7vtCpCh5NoP9MGJiQk&ved=0ahUKEwi7hYTi4MmLAxWQEFkFHfRgIpEQ4dUDCBA&uact=5&oq=orm+peewee&gs_lp=EhZnd3Mtd2l6LW1vZGVsZXNzLXZpZGVvIgpvcm0gcGVld2VlMgUQABiABDIGEAAYFhgeMgYQABgWGB4yCxAAGIAEGIYDGIoFMgsQABiABBiGAxiKBTILEAAYgAQYhgMYigUyBRAAGO8FMgUQABjvBTIFEAAY7wUyBRAAGO8FSK4gUABY_B1wAHgBkAEAmAHNAaABvQmqAQU0LjUuMbgBA8gBAPgBAZgCCqAC3AnCAgoQABiABBhDGIoFwgIIEAAYgAQYsQPCAg4QABiABBixAxiDARiKBcICCxAAGIAEGLEDGIMBwgILEAAYgAQYkQIYigXCAggQABiABBiiBMICCBAAGBYYChgemAMAkgcFMy42LjGgB5Ax&sclient=gws-wiz-modeless-video#fpstate=ive&vld=cid:16e318ac,vid:AjQXHWupoG0,st:0
+
+# Codes de retour HTTP
+# https://developer.mozilla.org/fr/docs/Web/HTTP/Status
+
+# Swagger : Vidéo très explicite
+# https://www.google.com/search?q=swagger+tutorial+for+beginners&sca_esv=b8ad25cd9efd3a98&rlz=1C1ONGR_frCA1020CA1020&udm=7&biw=1936&bih=837&ei=UkKzZ4XqBon8ptQP4P2VwQM&oq=swagger+tutorial+for+beginer&gs_lp=EhZnd3Mtd2l6LW1vZGVsZXNzLXZpZGVvIhxzd2FnZ2VyIHR1dG9yaWFsIGZvciBiZWdpbmVyKgIIADIHEAAYgAQYDTIGEAAYFhgeMgYQABgWGB4yCBAAGAgYDRgeMgsQABiABBiGAxiKBTIIEAAYgAQYogRIhkRQoAVYqC1wAXgBkAEAmAFnoAG7DqoBBDIwLjG4AQHIAQD4AQGYAhagAo0PwgIKEAAYsAMY1gQYR8ICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIFEAAYgATCAgsQABiABBiRAhiKBcICCBAAGKIEGIkFmAMAiAYBkAYEkgcEMTguNKAHvIIB&sclient=gws-wiz-modeless-video#fpstate=ive&vld=cid:841944b7,vid:dhMlXoTD3mQ,st:0
+
+# Persistant Storage (voir le paragraphe "recuperation des produits page 12")
+# https://www.youtube.com/watch?v=m6sPJ1Z5X5M 
+# (mais l'assistant dit que ça ne veut pas dire de crérer un fichier)
+
+# https://www.youtube.com/watch?v=fkf28stMSr8 
+# (c'est tu un cookie ?)
+
+# https://www.youtube.com/watch?v=JZVd0zXzxCI 
+# (toutes les vidéos que j'ai vu à ce sujet me disent qu'il faut créer un fichier pour stocker dedans).

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+	<!-- Entete de la page -->
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Blue Berry Ice Cream</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Sofia|Trirong|Audiowide">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&effect=fire|neon|outline|emboss|shadow-multiple"> 
+
+    </head>
+
+    <!-- Corps de la page -->
+	<body>
+		<h2> Blue Berry Ice Cream </h2>
+		<header>
+			<p class="equipe_index_1"> Travail d'équipe fait par :                         <br> 
+				Claude Andreas Nguemtchom, Camara Ciré, Joel Sandé, Ulrich Lacmago Mbonwo  <br><br>
+				pour  :                                                                    <br> 
+				Prof. Jimmy Girald-Nault & son assistant 
+			</p>
+        </header>
+
+		<!--================  Reponse HTTP  ==================================================--->
+
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> Facture reçue de l'API </h2>
+			
+			{% if facture_data %} <br>
+				<div class="audit_ingrediens">
+					 {{ facture_data }}
+				</div><br>
+				<a href="{{ url_for('index_1') }}">Retourner à la Page d'accueil</a>
+			{% else %}
+				<div>
+					Aucune information de prix disponible du produit sélectionné.<br>
+				</div>	
+			{% endif %}
+        </div><br><br>
+		<!--================  Audit des produits  ==============================================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			
+			<h2> Traitement de Blue Berry Ice Cream </h2>
+			<img id="image_facture" src="/static/img/{{ image }}.jpg" alt="Image">                                <br>
+			
+			Nom sur la carte de crédit : {{ facture_data['credit_card']['name'] }}             <br>
+			First Digits de la carte   : {{ facture_data['credit_card']['first_digits'] }}     <br>
+			Last Digits de la carte    : {{ facture_data['credit_card']['last_digits'] }}      <br>
+			Année d'expiration         : {{ facture_data['credit_card']['expiration_year'] }}  <br>
+			Mois d'expiration          : {{ facture_data['credit_card']['expiration_month'] }} <br>
+
+			Commande No             : {{ commande['id'] }}
+			Id du produit           : {{ commande['produit']['product_id'] }}               <br>
+			Qté du produit          : {{ commande['produit']['quantity'] }}                 <br><br>
+			
+			Email du Bénéficiaire   : {{ commande['email'] }}    	                        <br><br>
+			
+			Pays                    : {{ commande['shipping_information']['country'] }}     <br>
+			Adresse                 : {{ commande['shipping_information']['address'] }}     <br>
+			Code postal             : {{ commande['shipping_information']['postal_code'] }} <br>
+			Ville                   : {{ commande['shipping_information']['city'] }}        <br>
+			Province                : {{ commande['shipping_information']['province'] }}    <br><br>
+		
+			Prix Total              : {{ commande['total_price'] }} $                       <br>
+			Prix Total avec Taxes   : {{ commande['total_price_tax'] }} $                   <br>
+			Coût de l'expédition    : {{ commande['shipping_price'] }} $                    <br><br>
+			
+			No Transaction          : {{ facture_data['transaction']['id'] }}               <br>
+			État de la Transaction  : {{ facture_data['transaction']['success'] }}          <br>
+			Montant Total à Payer   : {{ facture_data['transaction']['amount_charged'] }}   <br><br>
+			
+			Status paiement         : {{ commande['paid'] }}                                <br><br>
+
+		<a href="{{ url_for('index_1') }}">Retourner à la Page d'accueil</a>
+			
+		</div><br><br>		
+		<!--================  Audit des produits  ==============================================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> Liste de nos produits </h2>
+			<h4> ( Format JSON ) </h4>
+			<h4> (Allez plus bas pour voir la voir en format normal) </h4>
+	
+            {% if json_data %}	
+				<div class="audit_ingrediens">
+					{{ json_data }}    
+				</div><br>
+			{% else %}
+				<div>
+					Aucun produits disponibles pour le moment.<br>
+				</div><br>	
+			{% endif %}
+		</div><br><br>
+
+		<!--================  FIN DE L'Audit des produits  ===========================================--->
+		
+		<!--================  Audit des produits ( Format Normal ) ===================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> Liste de nos produits </h2>
+			<h4> ( Format Normal ) </h4>
+	
+            <!--============  Autres images en dessous, plus petites, avec nom superposé  =======================-->
+			<div class="other-images">
+				{% for i in range(50) %}
+				<div class="image-container">
+					<img src="/static/img/{{ i }}.jpg" alt="Image {{ i }}">
+					<div class="image-text">{{ i }}.jpg</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div><br><br><br>
+
+		<!--================  FIN DE L'Audit des produits ( Format Normal ) ===========================--->
+        
+    </body>
+
+	<!-- Le pied de page -->
+	<footer>
+        Travail d'équipe fait par : Andreas, Camara et Joel et Ulrich  | 8INF349 H2025 : Développement Web Avancé | UQAC | Hiver 2025 [ <a href="{{ url_for('apercus_video') }}">aperçus vidéo de la conception</a>­ ]
+	</footer>
+</html>

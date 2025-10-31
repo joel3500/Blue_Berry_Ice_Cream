@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+	<!-- Entete de la page -->
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Blue Berry Ice Cream</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Sofia|Trirong|Audiowide">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&effect=fire|neon|outline|emboss|shadow-multiple"> 
+    </head>
+
+    <!-- Corps de la page -->
+	<body>
+		<h2> Blue Berry Ice Cream </h2>
+		<header>
+			<p class="equipe"> Travail d'équipe fait par : <br><br> 
+                                Claude Andreas Nguemtchom  <br>
+                                Camara Ciré                <br> 
+                                Joel Sandé                 <br>
+                                Ulrich Lacmago Mbonwo      <br>
+            </p><br>
+
+            <p class="equipe">     pour  : <br><br> 
+                                   Prof. Jimmy Girald-Nault 
+            </p>
+            <img src="/static/img/blue_berry_ice_cream.jpg" alt="blue_berry_ice_cream">
+		
+        </header><br><br>
+		
+		<!--================  Audit des produits  ============================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> Produit sélectionné </h2>
+			
+			<!--============================================================-->
+			
+			{% if produit %} <br>
+				<div class="audit_ingrediens">
+					{{ produit['product_id'] }}<br>
+					{{ produit['quantity'] }}<br>
+				</div>
+			{% else %}
+				<div>
+					Aucune information d'entête disponible cette commande.<br>
+				</div>	
+			{% endif %}<br><br>
+			
+			<!--============================================================-->	
+
+            {% if product %} <br>	
+				<div class="audit_ingrediens">
+					{{ product['name'] }}<br>
+					{{ product['type'] }}<br>
+					{{ product['description'] }}<br>
+					{{ product['image'] }}<br>
+					{{ product['height'] }}<br>
+					{{ product['weight'] }}<br>
+					{{ product['price'] }}<br>
+					{{ product['in_stock'] }}<br>
+				</div><br>
+			{% else %}
+				<div>
+					<br>Aucune information disponible pour le moment.<br>
+				</div><br>	
+			{% endif %}
+			
+			<!--============================================================-->
+			
+			{% if commande %} <br>
+				<div class="audit_ingrediens">
+					{{ commande['total_price'] }} $ <br>
+					{{ commande['shipping_price'] }} $ <br>
+				</div>
+			{% else %}
+				<div>
+					Aucune information de prix disponible pour cette commande.<br>
+				</div>	
+			{% endif %}<br>
+		</div><br><br>
+
+		<!--================  FIN DE L'Audit des produits ( Format Normal ) ===========================--->
+
+		<h2> Adresse de livraison </h2>
+        <form action="/order/{{ commande['id'] }}" method="PUT">
+			
+			<label for="id">Commande no :</label>
+            <input class="readonly" type="text" id="id" name="id" value=commande['id'] readonly ><br><br>
+			
+			<label for="email">Entrez votre email :</label>
+            <input class="readonly" type="text" id="email" name="email" value=commande['email'] readonly><br><br>
+
+            <!-- Informations de la shipping information -->
+			<h2> Informations sur l'adresse d'expédition </h2>
+
+			<label for="country"> Pays :</label>
+            <input class="readonly" type="text" id="country" name="country" value=commande['shipping_information']['country'] readonly ><br><br>
+			
+			<label for="adresse"> Adresse :</label>
+            <input class="readonly" type="text" id="addresse" name="addresse" value=commande['shipping_information']['address'] readonly><br><br>
+			
+			<label for="postale_code"> Postal Code :</label>
+            <input class="readonly" type="text" id="postale_code" name="postale_code" value=commande['shipping_information']['address'] readonly ><br><br>
+			
+			<label for="city"> City :</label>
+            <input class="readonly" type="text" id="city" name="city" value=commande['shipping_information']['address'] readonly ><br><br>
+			
+			<label for="province"> Province:</label>
+            <input class="readonly" type="text" id="province" name="province" value=commande['shipping_information']['address'] readonly ><br><br>
+
+     		<!-- Informations sur la credit card -->
+            <h2> Payer avec une carte de crédit </h2>
+			
+            <label for="name"> Nom sur la carte :</label>
+            <input type="text" id="name" name="name" required ><br><br>
+
+            <label for="cvv"> CVV :</label>
+            <input type="text" id="cvv" name="cvv" required ><br><br>
+
+			<label for="number"> Numéro sur la carte :</label>
+            <input type="text" id="number" name="number" required ><br><br>
+
+			<label for="expiration_year"> Expiration_year :</label>
+            <input type="text" id="expiration_year" name="expiration_year" required ><br><br>
+
+			<label for="expiration_month"> Expiration_month :</label>
+            <input type="text" id="expiration_month" name="expiration_month" required ><br><br>
+
+			<button type="submit">Ajouter mes informations</button>
+        </form><br><br><br><br>
+        
+    </body>
+
+	<!-- Le pied de page -->
+	<footer>
+        Travail d'équipe fait par : Andreas, Camara et Ulrich et Joel | 8INF349 H2025 : Développement Web Avancé | UQAC | Hiver 2025 [ <a href="{{ url_for('apercus_video') }}">aperçus vidéo de la conception</a>­ ]
+	</footer>
+</html>

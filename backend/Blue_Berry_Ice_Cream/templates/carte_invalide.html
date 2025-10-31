@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html>
+	<!-- Entete de la page -->
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title> Travail d'équipe fait par : Andréas, Camara, Ulrich et Joel </title>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+        <script language="javascript" src="/static/js/index.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Sofia|Trirong|Audiowide">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&effect=fire|neon|outline|emboss|shadow-multiple"> 
+      
+    </head>
+
+    <!-- Corps de la page -->
+	<body>
+		<h2> Blue Berry Ice Cream </h2>
+		<header>
+			<p class="equipe"> Travail d'équipe fait par : <br><br> 
+                                Claude Andreas Nguemtchom  <br>
+                                Camara Ciré                <br> 
+                                Joel Sandé                 <br>
+                                Ulrich Lacmago Mbonwo      <br><br>
+
+                                pour  :                    <br><br> 
+                                Prof. Jimmy Girald-Nault 
+            </p>
+		
+        </header><br><br>
+
+		<!--================  Reponse HTTP  ==================================================--->
+
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> :( Carte de Crédit INVALIDE :( !!!  </h2>
+			{% if status_code %}
+				<div class="audit_ingrediens">
+					{{ status_code }}<br>
+					FIN DES OPÉRATIONS 
+				</div><a href="{{ url_for('index_1') }}">Retourner à la Page d'accueil</a>
+			{% endif %} 
+		</div><br><br>
+
+        <!--================  Audit des produits  ============================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> Produit sélectionné </h2>
+			
+            {% if product %} <br>	
+				<div class="audit_ingrediens">
+					Id : {{ product['id'] }}<br>
+					Nom : {{ product['name'] }}<br>
+					Type : {{ product['type'] }}<br>
+					Description : {{ product['description'] }}<br>
+					Image {{ product['image'] }}<br>
+					Taille : {{ product['height'] }}<br>
+					Poids : {{ product['weight'] }}<br>
+					Prix unitaire {{ product['price'] }}<br>
+					Quantité en stock : {{ product['in_stock'] }}<br>
+				</div><br>
+			{% else %}
+				<div>
+					<br>Aucune information disponible pour le moment.<br>
+				</div><br>	
+			{% endif %}
+				
+		<!--============================================================-->
+			
+			{% if commande %} <br>
+				<div class="audit_ingrediens">
+
+					Prix total : {{ commande['total_price'] }} $ <br>
+					Coût de Livraison : {{ commande['shipping_price'] }} $ <br><br>
+
+					Email : {{ commande['email'] }} $ <br>
+					Pays de destination : {{ commande['shipping_information']['country'] }} $ <br>
+					Adresse de destination : {{ commande['shipping_information']['adress'] }} <br>
+					Code Postale : {{ commande['shipping_information']['postal_code'] }} <br>
+					Ville : {{ commande['shipping_information']['city'] }} <br>
+					Province : {{ commande['shipping_information']['province'] }} <br>
+					Prix total après les taxes : {{ commande['total_price_tax'] }} <br>
+				
+				</div>
+			{% else %}
+				<div>
+					Aucune information de prix disponible pour cette commande.<br>
+				</div>	
+			{% endif %}<br>
+			
+		</div><br><br><br><br>
+
+		</body>
+
+	<!-- Le pied de page -->
+	<footer>
+        Travail d'équipe fait par : Andreas, Camara et Joel et Ulrich  | 8INF349 H2025 : Développement Web Avancé | UQAC | Hiver 2025 [ <a href="{{ url_for('apercus_video') }}">aperçus vidéo de la conception</a>­ ]
+	</footer>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+	<!-- Entete de la page -->
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title> Travail d'équipe fait par : Andréas, Camara, Ulrich et Joel </title>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+        <script language="javascript" src="/static/js/index.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Sofia|Trirong|Audiowide">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&effect=fire|neon|outline|emboss|shadow-multiple"> 
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    </head>
+
+    <!-- Corps de la page -->
+	<body>
+		<h2> Blue Berry Ice Cream </h2>
+		<header>
+			<p class="equipe"> Travail d'équipe fait par : <br><br> 
+                                Claude Andreas Nguemtchom  <br>
+                                Camara Ciré                <br> 
+                                Joel Sandé                 <br>
+                                Ulrich Lacmago Mbonwo      <br>
+            </p><br>
+
+            <p class="equipe">     pour  : <br><br> 
+                                   Prof. Jimmy Girald-Nault 
+            </p>
+            <img src="/static/img/blue_berry_ice_cream.jpg" alt="blue_berry_ice_cream">
+		
+        </header><br><br>
+
+		{{ status_code }}
+		
+        <!--================  Audit des produits ( Format JSON )  ============================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> Liste de nos produits </h2>
+			<h4> ( Format JSON ) </h4>
+			<!--
+			<h4>(Allez plus bas pour voir la voir en format normal)</h4>
+			-->
+	
+            {% if json_data %} <br>	
+				<div class="audit_ingrediens">
+					{{ json_data }}    
+				</div><br>
+			{% else %}
+				<div>
+					<br>Aucun produits disponibles pour le moment.<br>
+				</div><br>	
+			{% endif %}
+		</div><br><br><br>
+
+		<!--================  FIN DE L'Audit des produits ( Format JSON )  ==========================--->
+		
+		<!--================  Audit des produits ( Format Normal ) ============================================--->
+		
+		<div type="text" class="reponse_assistant" name="reponse_assistant">
+			<h2> Liste de nos produits </h2>
+			<h4> ( Format Normal ) </h4>
+			<!--
+			<h4>(Allez plus bas pour voir la voir en format normal)</h4>
+			-->
+	
+            {% if json_data %} <br>	
+				<div class="audit_ingrediens">
+					{{ json_data }}    
+				</div><br>
+			{% else %}
+				<div>
+					<br>Aucun produits disponibles pour le moment.<br>
+				</div><br>	
+			{% endif %}
+		</div><br><br><br>
+
+		<!--================  FIN DE L'Audit des produits ( Format Normal ) ===========================--->
+
+		<h2> Passer une Commande  </h2>
+		<h4> ( basée sur les Id listés plus haut ) </h4>
+
+        <form action="/order" method="POST">
+		
+            <label for="id">Id du produit :</label>
+            <input type="text" id="id" name="id" required min="1" step="1"><br><br>
+    
+            <label for="quantity">Quantité :</label>
+            <input type="text" id="quantity" name="quantity" required min="1" step="1"><br><br>
+			
+			<!--
+				min="1" empêche la saisie de nombres négatifs.
+				step="1" restreint la saisie aux nombres entiers (aucune décimale n'est autorisée).
+			-->
+            <button type="submit">Passer la Commande :</button>
+        </form><br><br><br><br>
+		
+    </body>
+
+	<!-- Le pied de page -->
+	<footer>
+        Travail d'équipe fait par : Andreas, Camara et Ulrich et Joel | 8INF349 H2025 : Développement Web Avancé | UQAC | Hiver 2025 [ <a href="{{ url_for('apercus_video') }}">aperçus vidéo de la conception</a>­ ]
+	</footer>
+</html>
