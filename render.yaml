@@ -8,7 +8,7 @@ services:
     rootDir: backend/Blue_Berry_Ice_Cream
 
     # requirements.txt est à la RACINE → on remonte d’un cran
-    buildCommand: python -m pip install --upgrade pip && pip install -r ../requirements.txt
+    buildCommand: python -m pip install --upgrade pip && pip install -r requirements.txt
 
     # App Flask = products dans products.py
     # Astuce : on peut appeler gunicorn via python -m (évite des soucis de PATH)
