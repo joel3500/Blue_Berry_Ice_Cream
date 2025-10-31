@@ -256,7 +256,7 @@ button {
 /* ================ FOOTER =============================*/
 
 footer 
-{   position:fixed; 
+{   position:static; 
     margin-top:70px;
     left:10px; 
     right:10px; 
